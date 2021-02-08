@@ -5,21 +5,34 @@ public class Quote {
     private String quote;
     private String author;
     private long id;
+    private long stars;
 
-    public Quote(long id, String quote, String author) {
+
+    public Quote(long id, String quote, String author, long stars) {
         this.id = id;
         this.quote = quote;
         this.author = author;
+        this.stars = stars;
     }
 
-    public Quote(String quote, String author) {
+    public Quote(String quote, String author, long stars) {
         this.quote = quote;
         this.author = author;
+        this.stars = stars;
+    }
+
+    public void setStars(long stars) {
+        this.stars = stars;
+    }
+
+    public long getStars() {
+        return stars;
     }
 
     public String getQuote() {
         return quote;
     }
+
 
     public void setQuote(String quote) {
         this.quote = quote;

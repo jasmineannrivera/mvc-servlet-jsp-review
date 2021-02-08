@@ -29,6 +29,11 @@
         <div class="col-md-6">
             <h2>${quote.quote}</h2>
             <p>Author: ${quote.author}</p>
+            <p>Stars: ${quote.stars}</p>
+            <form action="/quotes/star" method="post">
+                <input type="hidden" name="quote_id" value="${quote.id}">
+                <input type="submit" value="Star">
+            </form>
         </div>
     </c:forEach>
 </div>

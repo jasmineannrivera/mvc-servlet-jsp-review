@@ -35,7 +35,8 @@ public class QuotesDao {
                     new Quote(
                         rs.getLong("id"),
                         rs.getString("author"),
-                        rs.getString("quote")
+                        rs.getString("quote"),
+                        rs.getLong("stars")
                     )
                 );
             }
@@ -54,5 +55,16 @@ public class QuotesDao {
         int randomIndex = (int) Math.floor(Math.random() * quotes.size());
 
         return quotes.get(randomIndex);
+    }
+
+    public void star(long id) {
+        try {
+            String insertQuery = "UPDATE quotes SET stars = stars + 1 WHERE id = ?";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error starring quote #" + id, e);
+        }
     }
 }
